@@ -1,6 +1,6 @@
 var hoursOpen = ['6am: ','7am: ','8am: ','9am: ','10am: ','11am: ','12pm: ','1pm: ','2pm: ','3pm: ','4pm: ','5pm: ','6pm: ','7pm: ' ]
 var Locations = [
-  seattle = {
+  {
     id: 'seattle',
     name: 'Seattle',
     min: 23,
@@ -11,7 +11,7 @@ var Locations = [
     totalCustomers: 0,
     totalCookies: 0,
   },
-  tokyo = {
+  {
     id: 'tokyo',
     name: 'Tokyo',
     min: 3,
@@ -22,7 +22,7 @@ var Locations = [
     totalCustomers: 0,
     totalCookies: 0,
   },
-  dubai = {
+  {
     id: 'dubai',
     name: 'Dubai',
     min: 11,
@@ -33,7 +33,7 @@ var Locations = [
     totalCustomers: 0,
     totalCookies: 0,
   },
-  paris = {
+  {
     id: 'paris',
     name: 'Paris',
     min: 20,
@@ -60,22 +60,21 @@ var Locations = [
 function RandomNumber(min,max){
   return Math.random() * ((max + 1) - min) + min;
 }
+
 function cookies(location){
-for(var i = 0; i < 14; i++){
-  var HourlyCustomer = Math.floor(RandomNumber(location.min, location.max));
-  var HourlyCookie = Math.floor(HourlyCustomer * 6.3)
-  location.totalCookies += HourlyCookie;
-  // location.totalCustomers += HourlyCustomer;
-  location.hourlyCookies.push(hoursOpen[i] + ' ' + HourlyCookie + ' cookies');
-  // location.hourlyCustomers.push(hoursOpen[i] + ' ' + HourlyCustomer + 'customers');
-}
+  for(var i = 0; i < 14; i++){
+    var HourlyCustomer = Math.floor(RandomNumber(location.min, location.max));
+    var HourlyCookie = Math.floor(HourlyCustomer * 6.3)
+    location.totalCookies += HourlyCookie;
+    location.hourlyCookies.push(hoursOpen[i] + ' ' + HourlyCookie + ' cookies');
+  }
 }
 
 function renderToSales(location){
   var parentOfSales = document.getElementById(location.id+'Sales-ul');
-  parentOfSales.append(location.name)
-  
-  var listSales;
+  var listSales = document.createElement('h1');
+  listSales.textContent = location.name;
+  parentOfSales.append(listSales)
   
   for(var i in location.hourlyCookies){
     listSales = document.createElement('li');
@@ -86,7 +85,6 @@ function renderToSales(location){
   listSales = document.createElement('li');
   listSales.textContent = 'Total: ' + location.totalCookies
   parentOfSales.appendChild(listSales);
-
 }
 
 function renderToIndex(location){
