@@ -3,8 +3,10 @@
 }
 table, th, td {
   border: 1px solid black;
+  border-collapse: collapse;
   font-size: 16pt;
   color: #6b0024;
+  padding: 1%;
 }
 table td{
   font-family: 'Metal Mania', cursive;
